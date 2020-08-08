@@ -12,3 +12,26 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 
+SET SESSION AUTHORIZATION DEFAULT;
+
+ALTER TABLE public.products DISABLE TRIGGER ALL;
+
+
+
+ALTER TABLE public.products ENABLE TRIGGER ALL;
+
+
+ALTER TABLE public.projects DISABLE TRIGGER ALL;
+
+
+
+ALTER TABLE public.projects ENABLE TRIGGER ALL;
+
+
+ALTER TABLE public.project_products DISABLE TRIGGER ALL;
+
+
+
+ALTER TABLE public.project_products ENABLE TRIGGER ALL;
+
+

@@ -1,11 +1,11 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE projects (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
-    title TEXT DEFAULT '' NOT NULL
+    title TEXT NOT NULL
 );
 CREATE TABLE products (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
-    title TEXT DEFAULT '' NOT NULL,
+    title TEXT NOT NULL,
     price REAL NOT NULL
 );
 CREATE TABLE project_products (
