@@ -6,7 +6,7 @@ CREATE TABLE projects (
 CREATE TABLE products (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
     title TEXT NOT NULL,
-    price REAL NOT NULL
+    price DOUBLE PRECISION NOT NULL
 );
 CREATE TABLE project_products (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
@@ -14,5 +14,5 @@ CREATE TABLE project_products (
     product_id UUID NOT NULL,
     quantity INT NOT NULL
 );
-ALTER TABLE project_products ADD CONSTRAINT project_products_ref_project_id FOREIGN KEY (project_id) REFERENCES projects (id) ON DELETE NO ACTION;
 ALTER TABLE project_products ADD CONSTRAINT project_products_ref_product_id FOREIGN KEY (product_id) REFERENCES products (id) ON DELETE NO ACTION;
+ALTER TABLE project_products ADD CONSTRAINT project_products_ref_project_id FOREIGN KEY (project_id) REFERENCES projects (id) ON DELETE NO ACTION;
