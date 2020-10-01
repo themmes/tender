@@ -7,3 +7,9 @@ import Web.Types
 instance AutoRoute ProjectsController
 type instance ModelControllerMap WebApplication Project = ProjectsController
 
+instance AutoRoute ProductsController
+type instance ModelControllerMap WebApplication Product = ProductsController
+
+instance AutoRoute ProjectProductsController
+type instance ModelControllerMap WebApplication ProjectProduct = ProjectProductsController
+

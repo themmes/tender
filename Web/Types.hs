@@ -25,3 +25,23 @@ data ProjectsController
     | UpdateProjectAction { projectId :: !(Id Project) }
     | DeleteProjectAction { projectId :: !(Id Project) }
     deriving (Eq, Show, Data)
+
+data ProductsController
+    = ProductsAction
+    | NewProductAction
+    | ShowProductAction { productId :: !(Id Product) }
+    | CreateProductAction
+    | EditProductAction { productId :: !(Id Product) }
+    | UpdateProductAction { productId :: !(Id Product) }
+    | DeleteProductAction { productId :: !(Id Product) }
+    deriving (Eq, Show, Data)
+
+data ProjectProductsController
+    = ProjectProductsAction
+    | NewProjectProductAction
+    | ShowProjectProductAction { projectProductId :: !(Id ProjectProduct) }
+    | CreateProjectProductAction
+    | EditProjectProductAction { projectProductId :: !(Id ProjectProduct) }
+    | UpdateProjectProductAction { projectProductId :: !(Id ProjectProduct) }
+    | DeleteProjectProductAction { projectProductId :: !(Id ProjectProduct) }
+    deriving (Eq, Show, Data)
