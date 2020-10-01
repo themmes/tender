@@ -17,6 +17,7 @@ instance Controller ProjectProductsController where
 
     action NewProjectProductAction = do
         let projectProduct = newRecord
+        products <- query @Product |> fetch
         render NewView { .. }
 
     action ShowProjectProductAction { projectProductId } = do
@@ -25,6 +26,7 @@ instance Controller ProjectProductsController where
 
     action EditProjectProductAction { projectProductId } = do
         projectProduct <- fetch projectProductId
+        products <- query @Product |> fetch
         render EditView { .. }
 
     action UpdateProjectProductAction { projectProductId } = do
@@ -43,7 +45,7 @@ instance Controller ProjectProductsController where
         projectProduct
             |> buildProjectProduct
             |> ifValid \case
-                Left projectProduct -> render NewView { .. } 
+                Left projectProduct -> render NewView { .. }
                 Right projectProduct -> do
                     projectProduct <- projectProduct |> createRecord
                     setSuccessMessage "ProjectProduct created"
