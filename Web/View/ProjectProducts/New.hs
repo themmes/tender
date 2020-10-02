@@ -18,7 +18,7 @@ instance View NewView ViewContext where
 renderForm :: ProjectProduct -> Html
 renderForm projectProduct = formFor projectProduct [hsx|
     {hiddenField #projectId}
-    {selectField #productId products}
+    {(selectField #productId products) {helpText = "Pick a product"}}
     {textField #quantity}
     {submitButton}
 |]
