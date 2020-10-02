@@ -45,7 +45,9 @@ instance Controller ProjectProductsController where
         projectProduct
             |> buildProjectProduct
             |> ifValid \case
-                Left projectProduct -> render NewView { .. }
+                Left projectProduct -> do
+                    products <- query @Product |> fetch
+                    render NewView { .. }
                 Right projectProduct -> do
                     projectProduct <- projectProduct |> createRecord
                     setSuccessMessage "ProjectProduct created"
