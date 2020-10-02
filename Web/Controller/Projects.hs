@@ -43,7 +43,7 @@ instance Controller ProjectsController where
         project
             |> buildProject
             |> ifValid \case
-                Left project -> render NewView { .. } 
+                Left project -> render NewView { .. }
                 Right project -> do
                     project <- project |> createRecord
                     setSuccessMessage "Project created"
@@ -56,8 +56,4 @@ instance Controller ProjectsController where
         redirectTo ProjectsAction
 
 buildProject project = project
-<<<<<<< HEAD
-    |> fill @'[]
-=======
     |> fill @'["title"]
->>>>>>> e85f1aa3eb2488addc3c47d3f51d34cb531020cd
