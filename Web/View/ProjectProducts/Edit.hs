@@ -15,8 +15,6 @@ instance View EditView ViewContext where
         {renderForm projectProduct}
     |]
 
-
-
 renderForm :: ProjectProduct -> Html
 renderForm projectProduct = formFor projectProduct [hsx|
     {hiddenField #projectId}
@@ -24,3 +22,8 @@ renderForm projectProduct = formFor projectProduct [hsx|
     {textField #quantity}
     {submitButton}
 |]
+
+instance CanSelect Product where
+  type SelectValue Product = Id Product
+  selectValue = get #id
+  selectLabel product = get #title product

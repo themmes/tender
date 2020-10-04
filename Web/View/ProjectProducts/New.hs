@@ -26,4 +26,4 @@ renderForm projectProduct = formFor projectProduct [hsx|
 instance CanSelect Product where
   type SelectValue Product = Id Product
   selectValue = get #id
-  selectLabel = get #title
+  selectLabel product = get #title product
