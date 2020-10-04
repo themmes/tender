@@ -18,17 +18,16 @@ instance View EditView ViewContext where
         <h1>Edit added product</h1>
         {renderForm projectProduct}
     |]
-
-
-renderForm :: ProjectProduct -> Html
-renderForm projectProduct = formFor projectProduct [hsx|
-    {hiddenField #projectId}
-    {selectField #productId products}
-    {textField #quantity}
-    {submitButton}
-|]
+      where
+        renderForm :: ProjectProduct -> Html
+        renderForm projectProduct = formFor projectProduct [hsx|
+            {hiddenField #projectId}
+            {selectField #productId products}
+            {textField #quantity}
+            {submitButton}
+            |]
 
 instance CanSelect Product where
   type SelectValue Product = Id Product
-  selectValue product = get #id product
+  selectValue = get #id
   selectLabel product = get #title product

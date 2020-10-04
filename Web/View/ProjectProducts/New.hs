@@ -18,17 +18,16 @@ instance View NewView ViewContext where
         <h1>Add new product</h1>
         {renderForm projectProduct}
     |]
+      where
+        renderForm :: ProjectProduct -> Html
+        renderForm projectProduct = formFor projectProduct [hsx|
+            {hiddenField #projectId}
+            {selectField #productId products}
+            {textField #quantity}
+            {submitButton}
+            |]
 
---     {(selectField #productId products) {helpText = "Pick a product"}}
-renderForm :: ProjectProduct -> Html
-renderForm projectProduct = formFor projectProduct [hsx|
-    {hiddenField #projectId}
-
-    {textField #quantity}
-    {submitButton}
-|]
-
---instance CanSelect Product where
---  type SelectValue Product = Id Product
---  selectValue = get #id
---  selectLabel product = get #title product
+instance CanSelect Product where
+  type SelectValue Product = Id Product
+  selectValue = get #id
+  selectLabel product = get #title product
