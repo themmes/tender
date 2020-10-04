@@ -12,4 +12,5 @@ instance View ShowView ViewContext where
             </ol>
         </nav>
         <h1>Show Project</h1>
+        <a class="btn btn-primary" href={NewProjectProductAction (get #id project)}>Add Product</a>
     |]

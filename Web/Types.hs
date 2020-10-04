@@ -38,7 +38,7 @@ data ProductsController
 
 data ProjectProductsController
     = ProjectProductsAction
-    | NewProjectProductAction
+    | NewProjectProductAction { projectId :: !(Id Project) }
     | ShowProjectProductAction { projectProductId :: !(Id ProjectProduct) }
     | CreateProjectProductAction
     | EditProjectProductAction { projectProductId :: !(Id ProjectProduct) }

@@ -15,8 +15,10 @@ instance Controller ProjectProductsController where
         projectProducts <- query @ProjectProduct |> fetch
         render IndexView { .. }
 
-    action NewProjectProductAction = do
+    action NewProjectProductAction { projectId } = do
+        project <- fetch projectId
         let projectProduct = newRecord
+              |> set #projectId projectId
         products <- query @Product |> fetch
         render NewView { .. }
 
@@ -26,6 +28,7 @@ instance Controller ProjectProductsController where
 
     action EditProjectProductAction { projectProductId } = do
         projectProduct <- fetch projectProductId
+        project <- fetch (get #projectId projectProduct)
         products <- query @Product |> fetch
         render EditView { .. }
 
@@ -34,7 +37,10 @@ instance Controller ProjectProductsController where
         projectProduct
             |> buildProjectProduct
             |> ifValid \case
-                Left projectProduct -> render EditView { .. }
+                Left projectProduct -> do
+                  project <- fetch (get #projectId projectProduct)
+                  products <- query @Product |> fetch
+                  render EditView { .. }
                 Right projectProduct -> do
                     projectProduct <- projectProduct |> updateRecord
                     setSuccessMessage "ProjectProduct updated"
@@ -44,8 +50,10 @@ instance Controller ProjectProductsController where
         let projectProduct = newRecord @ProjectProduct
         projectProduct
             |> buildProjectProduct
+            |> fill @'["projectId"]
             |> ifValid \case
                 Left projectProduct -> do
+                    project <- fetch (get #projectId projectProduct)
                     products <- query @Product |> fetch
                     render NewView { .. }
                 Right projectProduct -> do
@@ -61,3 +69,7 @@ instance Controller ProjectProductsController where
 
 buildProjectProduct projectProduct = projectProduct
     |> fill @["projectId","productId","quantity"]
+    |> validateField #productId productIsSelected
+
+productIsSelected productId | productId == def = Failure "Please pick a product"
+productIsSelected _ = Success

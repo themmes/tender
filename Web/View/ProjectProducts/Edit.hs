@@ -1,7 +1,11 @@
 module Web.View.ProjectProducts.Edit where
 import Web.View.Prelude
+import IHP.Controller.Param   ( paramList )
 
-data EditView = EditView { projectProduct :: ProjectProduct, products :: [Product] }
+data EditView = EditView {
+  projectProduct :: ProjectProduct
+  , project :: Project
+  , products :: [Product] }
 
 instance View EditView ViewContext where
     html EditView { .. } = [hsx|
@@ -15,6 +19,7 @@ instance View EditView ViewContext where
         {renderForm projectProduct}
     |]
 
+
 renderForm :: ProjectProduct -> Html
 renderForm projectProduct = formFor projectProduct [hsx|
     {hiddenField #projectId}
@@ -25,5 +30,5 @@ renderForm projectProduct = formFor projectProduct [hsx|
 
 instance CanSelect Product where
   type SelectValue Product = Id Product
-  selectValue = get #id
+  selectValue product = get #id product
   selectLabel product = get #title product
