@@ -44,7 +44,8 @@ instance Controller ProjectProductsController where
                 Right projectProduct -> do
                     projectProduct <- projectProduct |> updateRecord
                     setSuccessMessage "ProjectProduct updated"
-                    redirectTo EditProjectProductAction { .. }
+                    let projectId = get #projectId projectProduct
+                    redirectTo ShowProjectAction { .. }
 
     action CreateProjectProductAction = do
         let projectProduct = newRecord @ProjectProduct
@@ -59,13 +60,15 @@ instance Controller ProjectProductsController where
                 Right projectProduct -> do
                     projectProduct <- projectProduct |> createRecord
                     setSuccessMessage "ProjectProduct created"
-                    redirectTo ProjectProductsAction
+                    let projectId = get #projectId projectProduct
+                    redirectTo ShowProjectAction { .. }
 
     action DeleteProjectProductAction { projectProductId } = do
         projectProduct <- fetch projectProductId
         deleteRecord projectProduct
         setSuccessMessage "ProjectProduct deleted"
-        redirectTo ProjectProductsAction
+        let projectId = get #projectId projectProduct
+        redirectTo ShowProjectAction { .. }
 
 buildProjectProduct projectProduct = projectProduct
     |> fill @["projectId","productId","quantity"]
