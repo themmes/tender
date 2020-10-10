@@ -33,10 +33,13 @@ instance View ShowView ViewContext where
         renderProjectProduct :: Include "productId" ProjectProduct -> Html
         renderProjectProduct projectProduct = [hsx|
             <tr>
-            <td><a href={ShowProductAction (get #productId projectProduct)}>test</a></td>
-            <td>{get #quantity projectProduct}</td>
-            <td>{get #productId projectProduct |> get #title}</td>
+            <td><a href={ShowProductAction (get #productId projectProduct |> get #id)}>{get #productId projectProduct |> get #title}</a></td>
+            <td>{ quantity }</td>
+            <td>{ price }</td>
             <td><a href={EditProjectProductAction (get #id projectProduct)} class="text-muted">Edit</a></td>
             <td><a href={DeleteProjectProductAction (get #id projectProduct)} class="js-delete text-muted">Delete</a></td>
             </tr>
             |]
+          where
+            quantity = get #quantity projectProduct
+            price = get #productId projectProduct |> get #price
