@@ -24,7 +24,7 @@ instance Controller ProjectsController where
         projectProducts <- project
           |> get #projectProducts
           |> fetch
-          >>= collectionFetchRelated #product
+          >>= collectionFetchRelated #productId
         render ShowView { .. }
 
     action EditProjectAction { projectId } = do
