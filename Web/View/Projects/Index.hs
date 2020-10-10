@@ -29,7 +29,7 @@ instance View IndexView ViewContext where
 
 renderProject project = [hsx|
     <tr>
-        <td>{project}</td>
+        <td>{get #title project}</td>
         <td><a href={ShowProjectAction (get #id project)}>Show</a></td>
         <td><a href={EditProjectAction (get #id project)} class="text-muted">Edit</a></td>
         <td><a href={DeleteProjectAction (get #id project)} class="js-delete text-muted">Delete</a></td>
