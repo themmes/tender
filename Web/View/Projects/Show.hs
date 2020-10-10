@@ -30,6 +30,7 @@ instance View ShowView ViewContext where
         <a class="btn btn-primary" href={NewProjectProductAction (get #id project)}>Add Product</a>
     |]
       where
+        renderProjectProduct :: Include "productId" ProjectProduct -> Html
         renderProjectProduct projectProduct = [hsx|
             <tr>
             <td><a href={ShowProductAction (get #productId projectProduct)}>test</a></td>
