@@ -21,6 +21,7 @@ instance View ShowView ViewContext where
                         <th>Title</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>Total Price</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -36,6 +37,7 @@ instance View ShowView ViewContext where
             <td><a href={ShowProductAction (get #productId projectProduct |> get #id)}>{get #productId projectProduct |> get #title}</a></td>
             <td>{ quantity }</td>
             <td>{ price }</td>
+            <td>{ totalPrice }</td>
             <td><a href={EditProjectProductAction (get #id projectProduct)} class="text-muted">Edit</a></td>
             <td><a href={DeleteProjectProductAction (get #id projectProduct)} class="js-delete text-muted">Delete</a></td>
             </tr>
@@ -43,3 +45,4 @@ instance View ShowView ViewContext where
           where
             quantity = get #quantity projectProduct
             price = get #productId projectProduct |> get #price
+            totalPrice :: Double = fromIntegral quantity * price
