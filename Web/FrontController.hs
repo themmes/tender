@@ -12,7 +12,7 @@ import IHP.Welcome.Controller
 
 instance FrontController WebApplication where
     controllers =
-        [ startPage WelcomeAction
+        [ startPage ProjectsAction
         -- Generator Marker
         , parseRoute @ProjectProductsController
         , parseRoute @ProductsController
