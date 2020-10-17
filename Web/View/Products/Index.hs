@@ -10,12 +10,14 @@ instance View IndexView ViewContext where
                 <li class="breadcrumb-item active"><a href={ProductsAction}>Products</a></li>
             </ol>
         </nav>
-        <h1>Index <a href={pathTo NewProductAction} class="btn btn-primary ml-4">+ New</a></h1>
+        <h1>Products <a href={pathTo NewProductAction} class="btn btn-primary ml-4">+ New</a></h1>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Product</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Price</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -30,6 +32,8 @@ instance View IndexView ViewContext where
 renderProduct product = [hsx|
     <tr>
         <td>{get #title product}</td>
+        <td>{get #category product}</td>
+        <td>{get #price product}</td>
         <td><a href={ShowProductAction (get #id product)}>Show</a></td>
         <td><a href={EditProductAction (get #id product)} class="text-muted">Edit</a></td>
         <td><a href={DeleteProductAction (get #id product)} class="js-delete text-muted">Delete</a></td>

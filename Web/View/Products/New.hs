@@ -18,6 +18,7 @@ instance View NewView ViewContext where
 renderForm :: Product -> Html
 renderForm product = formFor product [hsx|
     {textField #title}
+    {textField #category}
     {textField #price}
     {submitButton}
 |]

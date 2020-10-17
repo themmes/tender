@@ -43,7 +43,7 @@ instance Controller ProductsController where
         product
             |> buildProduct
             |> ifValid \case
-                Left product -> render NewView { .. } 
+                Left product -> render NewView { .. }
                 Right product -> do
                     product <- product |> createRecord
                     setSuccessMessage "Product created"
@@ -56,4 +56,4 @@ instance Controller ProductsController where
         redirectTo ProductsAction
 
 buildProduct product = product
-    |> fill @["title","price"]
+    |> fill @["title","price", "category"]
