@@ -10,12 +10,12 @@ instance View IndexView ViewContext where
                 <li class="breadcrumb-item active"><a href={ProjectsAction}>Projects</a></li>
             </ol>
         </nav>
-        <h1>Index <a href={pathTo NewProjectAction} class="btn btn-primary ml-4">+ New</a></h1>
+        <h1>Projects <a href={pathTo NewProjectAction} class="btn btn-primary ml-4">+ New</a></h1>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Project</th>
+                        <th>Name</th>
                         <th></th>
                         <th></th>
                         <th></th>
