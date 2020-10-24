@@ -1,6 +1,8 @@
+.dir-locals.el
 .DS_Store
 .envrc
 .idea
+data
 tmp
 result
 node_modules
