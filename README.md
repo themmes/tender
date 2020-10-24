@@ -38,6 +38,8 @@ classDiagram
       +UUID id
       +UUID building_part_id
       +ProductCategory category
+      +Float price
+
     }
     class ProductCategory{
       <<enumeration>>
@@ -45,7 +47,11 @@ classDiagram
     }
     class Building{
       +UUID id
-
+      +String street_name
+      +String street_number
+      +String zipcode
+      +String city
+      +String country
     }
     class BuildingPart{
       +UUID id
